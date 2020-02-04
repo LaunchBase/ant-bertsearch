@@ -16,8 +16,9 @@ def index():
 
 @app.route('/search')
 def analyzer():
-	bc = BertClient(ip='bertserving', output_fmt='list')
-	client = Elasticsearch('elasticsearch:9200')
+	bc = BertClient(ip='3.9.235.208', output_fmt='list')
+	print('bertClient inited')
+	client = Elasticsearch()
 
 	query = request.args.get('q')
 	query_vector = bc.encode([query])[0]
@@ -32,6 +33,8 @@ def analyzer():
 		}
 	}
 
+	print(query)
+
 	response = client.search(
 		index=INDEX_NAME,
 		body={
@@ -40,7 +43,7 @@ def analyzer():
 			"_source": {"includes": ["title", "description","vid","subject_id"]}
 		}
 	)
-	print(query)
+	# print(query)
 	pprint(response)
 	return jsonify(response)
 
