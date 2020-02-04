@@ -1,0 +1,33 @@
+{
+	"settings": {
+	  "number_of_shards": 2,
+	  "number_of_replicas": 1
+	},
+	"mappings": {
+	  "dynamic": "true",
+	  "_source": {
+		"enabled": "true"
+	  },
+	  "properties": {
+		"title": {
+		  "type": "text"
+		},
+		"description": {
+		  "type": "text"
+		},
+		"transcript": {
+			"type": "text"
+		},
+		"text_vector": {
+		  "type": "dense_vector",
+		  "dims": 768
+		},
+		"vid": {
+			"type":"keyword"
+		},
+		"subject_id":{
+			"type":"integer"
+		}
+	  }
+	}
+  }
